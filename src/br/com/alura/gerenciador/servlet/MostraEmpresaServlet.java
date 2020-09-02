@@ -15,14 +15,12 @@ public class MostraEmpresaServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String paramId = request.getParameter("id");
-		Integer id = Integer.valueOf(paramId);
-		
+		String paramd = request.getParameter("id");
+		Integer id = Integer.valueOf(paramd);
+				
 		Banco banco = new Banco();
 		Empresa empresa = banco.buscaEmpresaPelaId(id);
-		
-		System.out.println(empresa.getNome());
-		
+
 		request.setAttribute("empresa", empresa);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/formAlteraEmpresa.jsp");
