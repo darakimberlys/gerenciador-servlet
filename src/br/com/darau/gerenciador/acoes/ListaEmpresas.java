@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.darau.gerenciador.servlet.modelo.Banco;
 import br.com.darau.gerenciador.servlet.modelo.Empresa;
@@ -15,6 +16,11 @@ import javax.servlet.ServletException;
 public class ListaEmpresas implements Acao{
 
     public String executa (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    	
+    	HttpSession sessao = request.getSession();
+    	if (sessao.getAttribute("usuarioLogado") == null) {
+    		return "redirect:entrada?acao=LoginForm";
+		}    	
 
 		System.out.println("listando empresa");
 		
@@ -23,7 +29,5 @@ public class ListaEmpresas implements Acao{
 		request.setAttribute("empresas", lista);
 		
 		return "forward:/listaEmpresas.jsp";
-
     }
-	
 }
