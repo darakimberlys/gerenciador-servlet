@@ -1,4 +1,4 @@
-package br.com.alura.gerenciador.acoes;
+package br.com.darau.gerenciador.acoes;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -9,13 +9,15 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import br.com.darau.gerenciador.servlet.modelo.Banco;
+import br.com.darau.gerenciador.servlet.modelo.Empresa;
+
 import javax.servlet.ServletException;
-import br.com.alura.gerenciador.servlet.modelo.Banco;
-import br.com.alura.gerenciador.servlet.modelo.Empresa;
 
-public class NovaEmpresa {
+public class NovaEmpresa implements Acao {
 
-    public void executa (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    public String executa (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
     	System.out.println("Cadastrando nova empresa");
 		
@@ -38,7 +40,7 @@ public class NovaEmpresa {
 		banco.adiciona(empresa);
 		
 		request.setAttribute("empresa", empresa.getNome());
-		
-		response.sendRedirect("listaEmpresas");
+				
+		return "redirect:entrada?acao=ListaEmpresas";
     }
 }

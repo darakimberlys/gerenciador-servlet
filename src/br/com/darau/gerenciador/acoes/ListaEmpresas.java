@@ -1,4 +1,4 @@
-package br.com.alura.gerenciador.acoes;
+package br.com.darau.gerenciador.acoes;
 
 import java.io.IOException;
 import java.util.List;
@@ -6,11 +6,13 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.ServletException;
-import br.com.alura.gerenciador.servlet.modelo.Banco;
-import br.com.alura.gerenciador.servlet.modelo.Empresa;
 
-public class ListaEmpresas {
+import br.com.darau.gerenciador.servlet.modelo.Banco;
+import br.com.darau.gerenciador.servlet.modelo.Empresa;
+
+import javax.servlet.ServletException;
+
+public class ListaEmpresas implements Acao{
 
     public String executa (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
@@ -20,7 +22,7 @@ public class ListaEmpresas {
 		List<Empresa> lista = banco.getEmpresas();
 		request.setAttribute("empresas", lista);
 		
-		return "foward:listaEmpresas.jsp";
+		return "forward:/listaEmpresas.jsp";
 
     }
 	

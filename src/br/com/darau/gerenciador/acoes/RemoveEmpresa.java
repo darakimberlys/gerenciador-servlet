@@ -1,4 +1,4 @@
-package br.com.alura.gerenciador.acoes;
+package br.com.darau.gerenciador.acoes;
 
 import java.io.IOException;
 import java.util.List;
@@ -6,13 +6,15 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import br.com.darau.gerenciador.servlet.modelo.Banco;
+import br.com.darau.gerenciador.servlet.modelo.Empresa;
+
 import javax.servlet.ServletException;
-import br.com.alura.gerenciador.servlet.modelo.Banco;
-import br.com.alura.gerenciador.servlet.modelo.Empresa;
 
-public class RemoveEmpresa {
-
-    public String executa (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+public class RemoveEmpresa implements Acao{
+	
+    public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
 		System.out.println("acao removendo empresas");
 
