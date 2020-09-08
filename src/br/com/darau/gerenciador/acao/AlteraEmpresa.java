@@ -1,4 +1,4 @@
-package br.com.darau.gerenciador.acoes;
+package br.com.darau.gerenciador.acao;
 
 import java.io.IOException;
 import java.text.ParseException;

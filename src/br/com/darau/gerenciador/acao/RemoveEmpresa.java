@@ -1,7 +1,9 @@
-package br.com.darau.gerenciador.acoes;
+package br.com.darau.gerenciador.acao;
 
 import java.io.IOException;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,20 +12,21 @@ import br.com.darau.gerenciador.servlet.modelo.Empresa;
 
 import javax.servlet.ServletException;
 
-public class MostraEmpresa implements Acao{
-
+public class RemoveEmpresa implements Acao{
+	
     public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
-		System.out.println("mostrando dados da empresa");
+		System.out.println("acao removendo empresas");
 
-		String paramd = request.getParameter("id");
-		Integer id = Integer.valueOf(paramd);
-				
-		Banco banco = new Banco();
-		Empresa empresa = banco.buscaEmpresaPelaId(id);
-
-		request.setAttribute("empresa", empresa);
+		String paramId = request.getParameter("id");
+		Integer id = Integer.valueOf(paramId);
 		
-		return "forward:/formAlteraEmpresa.jsp";
+		System.out.println(id);
+		
+		Banco banco = new Banco();
+		banco.removeEmpresa(id);
+		
+		return "redirect:entrada?acao=ListaEmpresas";
+		
 	}
 }

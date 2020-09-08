@@ -10,6 +10,7 @@
 <title>Formulario</title>
 </head>
 <body>
+	<c:import url="logout-parcial.jsp"/>
 
 	<form action="${linkEntradaServleta }" method="post">
 	
