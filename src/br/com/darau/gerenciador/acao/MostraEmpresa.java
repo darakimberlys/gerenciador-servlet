@@ -16,14 +16,17 @@ public class MostraEmpresa implements Acao{
 
 		System.out.println("mostrando dados da empresa");
 
-		String paramd = request.getParameter("id");
-		Integer id = Integer.valueOf(paramd);
-				
+		String paramId = request.getParameter("id");
+		Integer id = Integer.valueOf(paramId);
+		
 		Banco banco = new Banco();
+		
 		Empresa empresa = banco.buscaEmpresaPelaId(id);
+		
+		System.out.println(empresa.getNome());
 
 		request.setAttribute("empresa", empresa);
 		
-		return "forward:/formAlteraEmpresa.jsp";
+		return "forward:formAlteraEmpresa.jsp";
 	}
 }

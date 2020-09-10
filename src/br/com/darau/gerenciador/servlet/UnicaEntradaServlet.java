@@ -19,34 +19,24 @@ public class UnicaEntradaServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String paramAcao = request.getParameter("acao");
-		
-//		HttpSession sessao = request.getSession();
-//		boolean usuarioNaoEstaLogado = (sessao.getAttribute("usuarioLogado") == null);
-//		boolean ehUmaAcaoProtegida = paramAcao.equals("Login") || paramAcao.equals("LoginForm");
-//		
-//		if (ehUmaAcaoProtegida && usuarioNaoEstaLogado) {
-//			response.sendRedirect("entrada?acao=LoginForm");
-//			return;
-//		}
 				
-		String nomeDaClasse = "br.com.darau.gerenciador.acoes." + paramAcao;
+		String nomeDaClasse = "br.com.darau.gerenciador.acao." + paramAcao;
 		
 		String nome;
 		try {
-			Class classe = Class.forName(nomeDaClasse);
+			Class classe = Class.forName(nomeDaClasse);//carrega a classe com o nome 
 			Acao acao = (Acao) classe.newInstance();
-			nome = acao.executa(request, response);
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | ServletException
-				| IOException e) {
+			nome = acao.executa(request,response);
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
 			throw new ServletException(e);
 		}
 		
-		String [] tipoEEndereco = nome.split(":");
-		if (tipoEEndereco[0].equals("foward")) {
+		String[] tipoEEndereco = nome.split(":");
+		if(tipoEEndereco[0].equals("forward")) {
 			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/" + tipoEEndereco[1]);
-			rd.forward(request, response);	
+			rd.forward(request, response);
 		} else {
 			response.sendRedirect(tipoEEndereco[1]);
-		}
+		}		
 	}
 }

@@ -34,13 +34,14 @@ public class NovaEmpresa implements Acao {
 		
 		Empresa empresa = new Empresa();
 		empresa.setNome(nomeEmpresa);
-		empresa.setDataAbertura(dataAbertura); 
+		empresa.setDataAbertura(dataAbertura);
 		
 		Banco banco = new Banco();
 		banco.adiciona(empresa);
 		
 		request.setAttribute("empresa", empresa.getNome());
-				
+		
 		return "redirect:entrada?acao=ListaEmpresas";
-    }
+	
+	}
 }

@@ -27,6 +27,6 @@ public class RemoveEmpresa implements Acao{
 		banco.removeEmpresa(id);
 		
 		return "redirect:entrada?acao=ListaEmpresas";
-		
+	
 	}
 }
